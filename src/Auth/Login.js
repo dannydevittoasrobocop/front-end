@@ -9,7 +9,10 @@ const Login = () => {
   })
 
   const handleChange = event => {
-    setUser({ ...user, [event.target.name]: event.target.value });
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value
+    });
   };
 
   const handleSubmit = e => {
