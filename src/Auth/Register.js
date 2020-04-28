@@ -23,7 +23,7 @@ const Register = () => {
         .post('/registration/', user)
         .then(res => {
           localStorage.setItem('token', res.data.key)
-          console.log(localStorage.getItem('token'))
+          // console.log(localStorage.getItem('token'))
 
         })
         .catch(err => console.log(err))
