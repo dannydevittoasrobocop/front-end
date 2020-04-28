@@ -3,12 +3,14 @@ import './App.css';
 
 import Register from './Auth/Register';
 import Login from './Auth/Login';
+import Room from './components/Room'
 
 function App() {
   return (
     <div className="App">
-      <Login/>
-      <Register/>
+      <Login />
+      <Register />
+      <Room />
     </div>
   );
 }

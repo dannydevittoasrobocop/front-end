@@ -6,8 +6,8 @@ const Register = () => {
 
     const [user, setUser] = useState ({
       username: "",
-      password: "",
-      confirmPassword: ""
+      password1: "",
+      password2: ""
     })
 
     const handleChange = e => {
@@ -21,7 +21,7 @@ const Register = () => {
       e.preventDefault();
       // if (user.password === user.confirmPassword)
       axiosWithAuth()
-        .post('/registration', user)
+        .post('/registration/', user)
         .then(res => {
           localStorage.setItem('token', res.data.key)
           console.log(localStorage.getItem('token'))
@@ -46,8 +46,15 @@ const Register = () => {
             />
             <input
                 type='password'
-                name='password'
-                value={user.password}
+                name='password1'
+                value={user.password1}
+                onChange={handleChange}
+                required
+            />
+            <input
+                type='password'
+                name='password2'
+                value={user.password2}
                 onChange={handleChange}
                 required
             />
