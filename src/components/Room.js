@@ -9,31 +9,28 @@ const Room = () => {
         username: '',
         roomName: '',
         roomDescrition: '',
-        errorMesage: ''
-    })
+        errorMessage: '', 
+        currentPlayers: []
+        })
 
-    // useEffect(() => {
-    //     axiosWithAuth()
-    //         .get("adv/init/")
-    //         .then(response => {
-    //             // console.localStorage(response);
-    //             setRoom(response.data)
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
-    // }, [])
-    const test = () => {
+    useEffect(() => {
         axiosWithAuth()
             .get("adv/init/")
             .then(response => {
-                console.log(response);
-                // setRoom(response.data)
+                const res = response.data
+                console.log(response.data)
+                setRoom({
+                    username: res.name,
+                    roomName: res.title,
+                    roomDescrition: res.description,
+                    errorMessage: res.error_message, 
+                    currentPlayers: res.players
+                })
             })
             .catch(err => {
                 console.log(err);
             })
-    }
+    }, [])
 
     const handleMove = move => {
         axiosWithAuth()
@@ -41,8 +38,15 @@ const Room = () => {
                 direction: move
             })
             .then(response => {
+                const res = response.data
                 console.log(response.data)
-                // setRoom(response.data)
+                setRoom({
+                    username: res.name,
+                    roomName: res.title,
+                    roomDescrition: res.description,
+                    errorMessage: res.error_msg, 
+                    currentPlayers: res.players
+                })
             })
             .catch(err => {
                 console.log(err)
@@ -51,14 +55,20 @@ const Room = () => {
 
     return (
         <div className="wrapper">
+            <h1>Welcome {room.username}</h1>
+            <h4>Make a move!</h4>
+            {room.errorMessage == '' ? '' : <p>We are sorry... {room.errorMessage}</p>}
             <div className="arrows">
-                <button onClick={() => handleMove('n')}>↑</button>
+                <button onClick={() => handleMove('n')}>North ↑</button>
                 <br />
-                <button onClick={() => handleMove('w')}>←</button>
-                <button onClick={() => handleMove('s')}>↓</button>
-                <button onClick={() => handleMove('e')}>→</button>
-                <button onClick={test}>test</button>
+                <button onClick={() => handleMove('w')}>West ←</button>
+                <button onClick={() => handleMove('s')}>South ↓</button>
+                <button onClick={() => handleMove('e')}>East →</button>
+                {/* <button onClick={test}>test</button> */}
             </div>
+
+            <h4>Current Room: {room.roomName}</h4>
+            <h3>Room Description: {room.roomDescrition}</h3>
         </div >
     )
 }
