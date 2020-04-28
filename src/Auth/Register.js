@@ -19,7 +19,6 @@ const Register = () => {
 
     const handleSubmit = e => {
       e.preventDefault();
-      // if (user.password === user.confirmPassword)
       axiosWithAuth()
         .post('/registration/', user)
         .then(res => {
