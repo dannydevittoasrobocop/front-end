@@ -12,30 +12,37 @@ const Room = () => {
         errorMesage: ''
     })
 
-    useEffect(() => {
+    // useEffect(() => {
+    //     axiosWithAuth()
+    //         .get("adv/init/")
+    //         .then(response => {
+    //             // console.localStorage(response);
+    //             setRoom(response.data)
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // }, [])
+    const test = () => {
         axiosWithAuth()
-            .get("adv/init/", {
-                // headers: {
-                //     Authorization: 
-                // }
-            })
+            .get("adv/init/")
             .then(response => {
-                // console.localStorage(response);
-                setRoom(response.data)
+                console.log(response);
+                // setRoom(response.data)
             })
             .catch(err => {
                 console.log(err);
             })
-    }, [])
-
+    }
 
     const handleMove = move => {
         axiosWithAuth()
-            .post('/adv/move/', move)
+            .post('/adv/move/',  {
+                direction: move
+            })
             .then(response => {
                 console.log(response.data)
-                console.log("hello mikey")
-                setRoom(response.data)
+                // setRoom(response.data)
             })
             .catch(err => {
                 console.log(err)
@@ -50,6 +57,7 @@ const Room = () => {
                 <button onClick={() => handleMove('w')}>←</button>
                 <button onClick={() => handleMove('s')}>↓</button>
                 <button onClick={() => handleMove('e')}>→</button>
+                <button onClick={test}>test</button>
             </div>
         </div >
     )
