@@ -1,7 +1,6 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { axiosWithAuth } from '../utils/axiosWithAuth'
-import { render } from '@testing-library/react'
+import React, { useEffect, useState } from 'react';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import MapRooms from './MapRooms';
 
 
 const Map = () => {
@@ -11,7 +10,6 @@ const Map = () => {
         axiosWithAuth()
             .get("/adv/map")
             .then(response => {
-                console.log(response.data.title)
                 setRoomMap(response.data.title)
             })
             .catch(err => {
@@ -19,14 +17,13 @@ const Map = () => {
             })
     }, [])
 
+    // <rect x="0" y="0" rx="20" ry="20" width="15" height="15"/>
+
     return(
-        <div className="map">
-            {console.log(roomMap)}
-            {roomMap.map(i => (
-                <div>
-                    {i.title}
-                </div>    
-            ))}
+        <div>
+            <svg id='map'>
+                <rect x="0" y="0" rx="20" ry="20" width="15" height="15"/>
+            </svg>
         </div>
     )
 }
