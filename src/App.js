@@ -4,22 +4,24 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Register from './Auth/Register';
 import Login from './Auth/Login';
-import Map from './components/Map';
-import Room from './components/Room'
+import NavBar from './components/NavBar';
+import Game from './components/Game';
 import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
   return (
     <Router>
     <div className="App">
-      <Login />
-      <Register />
-      <Room />
-      <Map />
+      <NavBar/>
       <Switch>
-      <Route exact path = '/' component={Login} />
-      <Route path = '/register' component = {Register}/>
-      <PrivateRoute exact path = '/room' component = {Room}/>
+      <Route exact path = '/' component={Register} />
+      <Route 
+        path = '/login' 
+        render={props => {
+          return <Login {...props}/>
+        }}
+      />
+      <PrivateRoute exact path = '/game' component = {Game}/>
       </Switch>
     </div>
     </Router>

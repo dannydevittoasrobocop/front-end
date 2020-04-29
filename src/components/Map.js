@@ -20,7 +20,7 @@ const Map = () => {
     }, [])
 
     return(
-        <div>
+        <div className="map">
             {console.log(roomMap)}
             {roomMap.map(i => (
                 <div>
