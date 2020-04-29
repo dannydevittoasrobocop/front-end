@@ -57,7 +57,7 @@ const Room = () => {
         <div className="wrapper">
             <h1>Welcome {room.username}</h1>
             <h4>Make a move!</h4>
-            {room.errorMessage == '' ? '' : <p>We are sorry... {room.errorMessage}</p>}
+            {room.errorMessage == '' ? '' : <p>{room.errorMessage}</p>}
             <div className="arrows">
                 <button onClick={() => handleMove('n')}>North ↑</button>
                 <br />

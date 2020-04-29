@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 
 
-const Register = () => {
+const Register = ({history}) => {
 
     const [user, setUser] = useState ({
       username: "",
@@ -24,6 +24,7 @@ const Register = () => {
         .then(res => {
           localStorage.setItem('token', res.data.key)
           console.log(localStorage.getItem('token'))
+          history.push('/room')
 
         })
         .catch(err => console.log(err))
