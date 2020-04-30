@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
+import axios from 'axios'
 
 // import '../App.css'
 
@@ -16,8 +17,8 @@ const Login = (props) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    axiosWithAuth()
-      .post('/login/', user)
+    axios
+      .post('https://robocop-cs-buildweek.herokuapp.com/api/login/', user)
       .then(res => {
         localStorage.setItem('token', res.data.key)
         console.log(localStorage.getItem('token'))

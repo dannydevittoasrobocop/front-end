@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
+import axios from 'axios'
 
 // import '../App.css'
 
@@ -22,12 +23,12 @@ const Register = ({history}) => {
 
     const handleSubmit = e => {
       e.preventDefault();
-      axiosWithAuth()
-        .post('/registration/', user)
+      axios
+        .post('https://robocop-cs-buildweek.herokuapp.com/api/registration/', user)
         .then(res => {
           localStorage.setItem('token', res.data.key)
           console.log(localStorage.getItem('token'))
-          history.push('/')
+          history.push('/game')
 
         })
         .catch(err => console.log(err))

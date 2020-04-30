@@ -145,7 +145,7 @@ const Map = styled.div`
     max-width: 800px;
     height: 30rem;
     margin: 0 auto;
-    border: 1px solid red;
+    border: 1px solid black;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -162,11 +162,11 @@ const Room = styled.div`
     color: #000;
     font-weight: bold;
     font-size: 1.5rem;
-    border-top: ${props => props.n !== 0 ? 'none' : '2px solid blue'};
-    border-bottom: ${props => props.s !== 0 ? 'none' : '2px solid blue'};
-    border-left: ${props => props.w !== 0 ? 'none' : '2px solid blue'};
-    border-right: ${props => props.e !== 0 ? 'none' : '2px solid blue'};
-    background-color: ${props => props.current === props.id ? 'red' : 'transparent'};
+    border-top: ${props => props.n !== 0 ? 'none' : '2px solid black'};
+    border-bottom: ${props => props.s !== 0 ? 'none' : '2px solid black'};
+    border-left: ${props => props.w !== 0 ? 'none' : '2px solid black'};
+    border-right: ${props => props.e !== 0 ? 'none' : '2px solid black'};
+    background-color: ${props => props.current === props.id ? 'grey' : 'transparent'};
 `
 export default MapPrototype;
 
