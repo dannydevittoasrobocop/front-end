@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
+import axios from 'axios'
+
+// import '../App.css'
 
 
-const Login = () => {
+const Login = (props) => {
   const [user, setUser] = useState({
     username: "",
     password: ""
@@ -14,11 +17,12 @@ const Login = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    axiosWithAuth()
-      .post('/login/', user)
+    axios
+      .post('https://robocop-cs-buildweek.herokuapp.com/api/login/', user)
       .then(res => {
         localStorage.setItem('token', res.data.key)
         console.log(localStorage.getItem('token'))
+        props.history.push('/game')
 
       })
       .catch(err => console.log(err))
@@ -26,8 +30,8 @@ const Login = () => {
 
 
   return (
-    <div>
-      Login
+    <div className = 'flexForm'>
+      <p className = 'label'>Login</p>
       <form onSubmit={handleSubmit} className='loginForm'>
         <input
           type='text'

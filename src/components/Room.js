@@ -3,7 +3,7 @@ import axios from 'axios';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
-const Room = () => {
+const Room = ({setCurrentRoom}) => {
 
     const [room, setRoom] = useState({
         username: '',
@@ -47,6 +47,9 @@ const Room = () => {
                     errorMessage: res.error_msg, 
                     currentPlayers: res.players
                 })
+                setCurrentRoom({
+                    current: res.currentroom
+                })
             })
             .catch(err => {
                 console.log(err)
@@ -55,20 +58,22 @@ const Room = () => {
 
     return (
         <div className="wrapper">
-            <h1>Welcome {room.username}</h1>
-            <h4>Make a move!</h4>
-            {room.errorMessage == '' ? '' : <p>We are sorry... {room.errorMessage}</p>}
-            <div className="arrows">
-                <button onClick={() => handleMove('n')}>North ↑</button>
-                <br />
-                <button onClick={() => handleMove('w')}>West ←</button>
-                <button onClick={() => handleMove('s')}>South ↓</button>
-                <button onClick={() => handleMove('e')}>East →</button>
-                {/* <button onClick={test}>test</button> */}
+            <div className="errMsg">
+                {room.errorMessage == null || room.errorMessage == '' ? '' : <p>We are sorry... {room.errorMessage}</p>}
             </div>
-
-            <h4>Current Room: {room.roomName}</h4>
-            <h3>Room Description: {room.roomDescrition}</h3>
+            <div className="interface">
+                <div className="arrows">
+                    <button onClick={() => handleMove('n')}>North ↑</button>
+                    <br />
+                    <button onClick={() => handleMove('w')}>West ←</button>
+                    <button onClick={() => handleMove('e')}>East →</button>
+                    <button onClick={() => handleMove('s')}>South ↓</button>
+                </div>
+                <div className="roomInfo">
+                    <h3>{room.roomName}</h3>
+                    <h4>{room.roomDescrition}</h4>
+                </div>
+            </div>
         </div >
     )
 }

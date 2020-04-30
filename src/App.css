@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .App-logo {
@@ -35,4 +36,48 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.flexForm {
+  height: 800px;
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center
+}
+
+/* .loginForm {
+
+
+} */
+
+.label {
+  font-size: 20px;
+}
+
+input {
+  height: 30px;
+  margin: 10px;
+}
+
+button {
+  height: 30px;
+  color: black;
+}
+
+.navbar {
+  /* border: 1px solid red; */
+  height: 100px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: grey;
+  margin-bottom: 20px;
+}
+
+.logout {
+  margin-right: 30px;
+  font-size: 20px;
+  color: white;
 }
