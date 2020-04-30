@@ -3,7 +3,7 @@ import axios from 'axios';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
-const Room = () => {
+const Room = ({setCurrentRoom}) => {
 
     const [room, setRoom] = useState({
         username: '',
@@ -46,6 +46,9 @@ const Room = () => {
                     roomDescrition: res.description,
                     errorMessage: res.error_msg, 
                     currentPlayers: res.players
+                })
+                setCurrentRoom({
+                    current: res.currentroom
                 })
             })
             .catch(err => {

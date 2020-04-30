@@ -87,12 +87,13 @@ const dummy = [
         w: true,
     }
 ];
-const MapPrototype = () => {
+const MapPrototype = ({currentRoom, setCurrentRoom}) => {
+    console.log(currentRoom)
     // hooks
     const [roomMap, setRoomMap] = useState([])
-    const [room, setRoom] = useState({
-        current: ''
-        })
+    // const [room, setRoom] = useState({
+    //     current: ''
+    //     })
 
     // effects
     useEffect(() => {
@@ -113,8 +114,8 @@ const MapPrototype = () => {
             .then(response => {
                 const res = response.data
                 console.log(response.data)
-                setRoom({
-                    current: response.title
+                setCurrentRoom({
+                    current: response.data.currentroom
                 })
             })
             .catch(err => {
@@ -129,7 +130,7 @@ const MapPrototype = () => {
                     
                     return (
                         
-                        <Room n={rooms.n_to} s={rooms.s_to} e={rooms.e_to} w={rooms.w_to} current = {rooms.title}>
+                        <Room n={rooms.n_to} s={rooms.s_to} e={rooms.e_to} w={rooms.w_to} current = {currentRoom.current} id = {rooms.id}>
                             {rooms.id}
                         </Room>
                     )
@@ -151,8 +152,8 @@ const Map = styled.div`
     align-items: center;
 `
 const Room = styled.div`
-    width: 7rem;
-    height: 7rem;
+    width: 2rem;
+    height: 2rem;
     margin: 0 1rem;
     display: flex;
     flex-flow: column nowrap;
@@ -165,11 +166,7 @@ const Room = styled.div`
     border-bottom: ${props => props.s !== 0 ? 'none' : '2px solid blue'};
     border-left: ${props => props.w !== 0 ? 'none' : '2px solid blue'};
     border-right: ${props => props.e !== 0 ? 'none' : '2px solid blue'};
-    background-color: ${props => props.current === 'Grand Overlook' ? 'red' : "transparent"}
-    // background-color: ${props => props.current === 'Foyer' ? 'red' : "transparent"}
-    // background-color: ${props => props.current === 'Outside Cave Entrance' ? 'red' : "transparent"}
-    // background-color: ${props => props.current === 'Narrow Passage' ? 'red' : "transparent"}
-    // background-color: ${props => props.current === 'Treasure Chamber' ? 'red' : "transparent"}
+    background-color: ${props => props.current === props.id ? 'red' : 'transparent'};
 `
 export default MapPrototype;
 

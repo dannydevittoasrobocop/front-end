@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Room from './Room';
 import Map from './Map';
 
 const Game = () => {
+
+    const [currentRoom, setCurrentRoom] = useState({
+        current: ''
+        })
+
     return (
         <div>
             <div>
-                <Map />
+                <Map currentRoom = {currentRoom} setCurrentRoom = {setCurrentRoom}/>
             </div>
             <div>
-                <Room />
+                <Room currentRoom = {currentRoom} setCurrentRoom = {setCurrentRoom}/>
             </div>
         </div>
     )
