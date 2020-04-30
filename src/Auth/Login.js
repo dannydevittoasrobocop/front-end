@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 
+// import '../App.css'
+
 
 const Login = (props) => {
   const [user, setUser] = useState({
@@ -27,8 +29,8 @@ const Login = (props) => {
 
 
   return (
-    <div>
-      Login
+    <div className = 'flexForm'>
+      <p className = 'label'>Login</p>
       <form onSubmit={handleSubmit} className='loginForm'>
         <input
           type='text'

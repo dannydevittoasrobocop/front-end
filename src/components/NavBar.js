@@ -1,9 +1,16 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom'
 
-const NavBar = () => {
+const NavBar = ({history}) => {
+    const { push } = useHistory();
+
+    
     return (
-        <div>
-            <p>Logout</p>
+        <div className = 'navbar'>
+            <p className = 'logout' onClick={() => {
+                localStorage.clear('token')
+                push('/login')
+            }} >Logout</p>
         </div>
     )
 }

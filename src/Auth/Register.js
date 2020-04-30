@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 
+// import '../App.css'
 
-const Register = () => {
+
+const Register = ({history}) => {
 
     const [user, setUser] = useState ({
       username: "",
@@ -25,6 +27,7 @@ const Register = () => {
         .then(res => {
           localStorage.setItem('token', res.data.key)
           console.log(localStorage.getItem('token'))
+          history.push('/')
 
         })
         .catch(err => console.log(err))
@@ -32,14 +35,15 @@ const Register = () => {
 
 
     return (
-      <div>
-        Register
+      <div className = 'flexForm'>
+      <p className = 'label'>Register</p>
         
         
         <form onSubmit={handleSubmit} className='loginForm'>
             <input
                 type='text'
                 name='username'
+                placeholder='username'
                 value={user.username}
                 onChange={handleChange}
                 required
@@ -47,6 +51,7 @@ const Register = () => {
             <input
                 type='password'
                 name='password1'
+                placeholder='password'
                 value={user.password1}
                 onChange={handleChange}
                 required
@@ -54,13 +59,14 @@ const Register = () => {
             <input
                 type='password'
                 name='password2'
+                placeholder='confirm password'
                 value={user.password2}
                 onChange={handleChange}
                 required
             />
             <button>Register</button>
         </form>
-        <div>
+         <div>
           <p>Or login here!</p>
           <Link to='/login'>Login</Link>
         </div>

@@ -1,15 +1,9 @@
 import React, { useState,  useEffect } from 'react'
 import styled from 'styled-components';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
-// data shape
-// description: "North of you, the cave mount beckons"
-// e_to: 0
-// id: 1
-// n_to: 2
-// s_to: 0
-// title: "Outside Cave Entrance"
-// w_to: 0
-// dummy data
+
+
+
 const dummy = [
     {
         id: 1,
@@ -96,6 +90,10 @@ const dummy = [
 const MapPrototype = () => {
     // hooks
     const [roomMap, setRoomMap] = useState([])
+    const [room, setRoom] = useState({
+        current: ''
+        })
+
     // effects
     useEffect(() => {
         axiosWithAuth()
@@ -108,13 +106,31 @@ const MapPrototype = () => {
                 console.log(err);
             })
     }, [])
+
+    useEffect(() => {
+        axiosWithAuth()
+            .get("adv/init/")
+            .then(response => {
+                const res = response.data
+                console.log(response.data)
+                setRoom({
+                    current: response.title
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }, [])
     return (
         <>
             <Map>
-                {dummy.map(room => {
+            
+                {roomMap.map(rooms => {
+                    
                     return (
-                        <Room n={room.n} s={room.s} e={room.e} w={room.w} current={room.current}>
-                            {room.id}
+                        
+                        <Room n={rooms.n_to} s={rooms.s_to} e={rooms.e_to} w={rooms.w_to} current = {rooms.title}>
+                            {rooms.id}
                         </Room>
                     )
                 })}
@@ -145,11 +161,15 @@ const Room = styled.div`
     color: #000;
     font-weight: bold;
     font-size: 1.5rem;
-    border-top: ${props => props.n ? 'none' : '2px solid blue'};
-    border-bottom: ${props => props.s ? 'none' : '2px solid blue'};
-    border-left: ${props => props.w ? 'none' : '2px solid blue'};
-    border-right: ${props => props.e ? 'none' : '2px solid blue'};
-    background-color: ${props => props.current ? 'red' : "transparent"}
+    border-top: ${props => props.n !== 0 ? 'none' : '2px solid blue'};
+    border-bottom: ${props => props.s !== 0 ? 'none' : '2px solid blue'};
+    border-left: ${props => props.w !== 0 ? 'none' : '2px solid blue'};
+    border-right: ${props => props.e !== 0 ? 'none' : '2px solid blue'};
+    background-color: ${props => props.current === 'Grand Overlook' ? 'red' : "transparent"}
+    // background-color: ${props => props.current === 'Foyer' ? 'red' : "transparent"}
+    // background-color: ${props => props.current === 'Outside Cave Entrance' ? 'red' : "transparent"}
+    // background-color: ${props => props.current === 'Narrow Passage' ? 'red' : "transparent"}
+    // background-color: ${props => props.current === 'Treasure Chamber' ? 'red' : "transparent"}
 `
 export default MapPrototype;
 
