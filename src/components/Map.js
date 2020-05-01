@@ -46,21 +46,19 @@ const MapPrototype = ({currentRoom, setCurrentRoom}) => {
         roomMap.map(i => {
             if(currentRoom.current == i.id){
                 console.log("true")
-                return true
+                return {fill: "#c43a31"}
             }
             else{
                 console.log("false")
-                return false
+                return {fill: "#000000"}
             }
         })
     }
 
-    console.log(currentID())
-
     return (
         <div className='map'>
             {roomMap.forEach(el => {
-            coordArray.push({x: el.x, y: el.y, symbol: "square"})
+            coordArray.push({id: el.id, x: el.x, y: el.y, symbol: "square"})
                 })
             }
             {roomMap.forEach(el => {
@@ -74,7 +72,10 @@ const MapPrototype = ({currentRoom, setCurrentRoom}) => {
             >
             <VictoryScatter
             
-                style={{ data: { fill: "#c43a31" }, labels: { fill: "white", fontSize: 4 } }}
+                style={{ data: {
+                    fill: ({ datum }) => datum.id === currentRoom.current ? "#c43a31" : "#000000"},
+                     labels: { fill: "white", 
+                     fontSize: 4 } }}
                 size={5}
                 data={coordArray}
                 labels={idArray}
