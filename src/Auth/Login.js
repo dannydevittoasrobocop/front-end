@@ -38,6 +38,7 @@ const Login = (props) => {
           name='username'
           value={user.username}
           onChange={handleChange}
+          placeholder= 'username'
           required
         />
         <input
@@ -45,6 +46,7 @@ const Login = (props) => {
           name='password'
           value={user.password}
           onChange={handleChange}
+          placeholder='password'
           required
         />
         <button className='authButtons'>Login</button>
