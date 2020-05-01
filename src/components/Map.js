@@ -1,92 +1,9 @@
 import React, { useState,  useEffect } from 'react'
 import styled from 'styled-components';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import { VictoryScatter, VictoryChart, VictoryTheme } from 'victory';
 
 
-
-const dummy = [
-    {
-        id: 1,
-        name: '',
-        n: false,
-        s: false,
-        e: true,
-        w: false,
-    },
-    {
-        id: 2,
-        name: '',
-        n: false,
-        s: false,
-        e: true,
-        w: true,
-    },
-    {
-        id: 3,
-        name: '',
-        n: false,
-        s: false,
-        e: true,
-        w: true,
-    },
-    {
-        id: 4,
-        name: '',
-        n: false,
-        s: false,
-        e: true,
-        w: true,
-    },
-    {
-        id: 5,
-        name: '',
-        n: false,
-        s: true,
-        e: false,
-        w: true,
-    },
-    {
-        id: 6,
-        name: '',
-        n: false,
-        s: false,
-        e: true,
-        w: false,
-    },
-    {
-        id: 7,
-        name: '',
-        n: false,
-        s: false,
-        e: true,
-        w: true,
-    },
-    {
-        id: 8,
-        name: '',
-        n: false,
-        s: false,
-        e: true,
-        w: true,
-    },
-    {
-        id: 9,
-        name: '',
-        n: false,
-        s: false,
-        e: true,
-        w: true,
-        current: true
-    },
-    {
-        id: 10,
-        name: '',
-        n: true,
-        s: false,
-        e: false,
-        w: true,
-    }
-];
 const MapPrototype = ({currentRoom, setCurrentRoom}) => {
     console.log(currentRoom)
     // hooks
@@ -94,6 +11,7 @@ const MapPrototype = ({currentRoom, setCurrentRoom}) => {
     // const [room, setRoom] = useState({
     //     current: ''
     //     })
+    let coordArray = []
 
     // effects
     useEffect(() => {
@@ -109,6 +27,9 @@ const MapPrototype = ({currentRoom, setCurrentRoom}) => {
     }, [])
 
     useEffect(() => {
+        roomMap.forEach(el => {
+            coordArray.push({x: el.x, y: el.y})
+        })
         axiosWithAuth()
             .get("adv/init/")
             .then(response => {
@@ -122,8 +43,22 @@ const MapPrototype = ({currentRoom, setCurrentRoom}) => {
                 console.log(err);
             })
     }, [])
+
     return (
         <>
+            {roomMap.forEach(el => {
+            coordArray.push({x: el.x, y: el.y, symbol: "square"})
+        })}
+            <VictoryChart
+            theme={VictoryTheme.material}
+            domain={{ x: [0, 20], y: [0, 20] }}
+            >
+            <VictoryScatter
+                style={{ data: { fill: "#c43a31" } }}
+                size={5}
+                data={coordArray}
+            />
+            </VictoryChart>
             <Map>
             
                 {roomMap.map(rooms => {
