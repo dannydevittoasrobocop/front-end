@@ -13,7 +13,7 @@ const Game = () => {
             <div>
                 <Map currentRoom = {currentRoom} setCurrentRoom = {setCurrentRoom}/>
             </div>
-            <div>
+            <div className = 'room-controls'>
                 <Room currentRoom = {currentRoom} setCurrentRoom = {setCurrentRoom}/>
             </div>
         </div>

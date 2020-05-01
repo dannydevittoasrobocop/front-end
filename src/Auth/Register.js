@@ -65,7 +65,7 @@ const Register = ({history}) => {
                 onChange={handleChange}
                 required
             />
-            <button>Register</button>
+            <button className='authButtons'>Register</button>
         </form>
          <div>
           <p>Or login here!</p>
