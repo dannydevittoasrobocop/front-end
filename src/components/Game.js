@@ -9,7 +9,7 @@ const Game = () => {
         })
 
     return (
-        <div>
+        <div className="game">
             <div>
                 <Map currentRoom = {currentRoom} setCurrentRoom = {setCurrentRoom}/>
             </div>
