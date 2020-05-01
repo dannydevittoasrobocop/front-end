@@ -47,7 +47,7 @@ const Login = (props) => {
           onChange={handleChange}
           required
         />
-        <button>Login</button>
+        <button className='authButtons'>Login</button>
       </form>
     </div>
   );

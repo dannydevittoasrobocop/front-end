@@ -3,6 +3,7 @@ import axios from 'axios';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
+
 const Room = ({setCurrentRoom}) => {
 
     const [room, setRoom] = useState({
@@ -63,11 +64,11 @@ const Room = ({setCurrentRoom}) => {
             </div>
             <div className="interface">
                 <div className="arrows">
-                    <button onClick={() => handleMove('n')}>North ↑</button>
+                    <button className='direction' onClick={() => handleMove('n')}>North ↑</button>
                     <br />
-                    <button onClick={() => handleMove('w')}>West ←</button>
-                    <button onClick={() => handleMove('e')}>East →</button>
-                    <button onClick={() => handleMove('s')}>South ↓</button>
+                    <button className='direction' onClick={() => handleMove('w')}>West ←</button>
+                    <button className='direction' onClick={() => handleMove('e')}>East →</button>
+                    <button className='direction' onClick={() => handleMove('s')}>South ↓</button>
                 </div>
                 <div className="roomInfo">
                     <h3>{room.roomName}</h3>

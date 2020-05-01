@@ -65,7 +65,7 @@ const MapPrototype = ({currentRoom, setCurrentRoom}) => {
                 idArray.push(el.id)
                 })
             }
-            <VictoryChart
+            <VictoryChart 
             theme={VictoryTheme.material}
             domain={{ x: [0, 20], y: [0, 20] }}
             
